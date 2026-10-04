@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Yorum kiti · Çelik Oto Kiralama</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--bg:#F6F3EE;--card:#fff;--ink:#1B2130;--muted:#5D6573;--line:#E3DDD3;--warm:#D4541F;--cool:#2466D1;--wa:#1DA851}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+.w{max-width:760px;margin:0 auto;padding:32px 20px 60px}
+.ust{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(30px,8vw,44px);letter-spacing:-.03em;line-height:1.08;font-weight:800;margin:10px 0 10px}
+.alt{color:var(--muted);font-size:17px;max-width:40ch}
+h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:40px 0 6px}
+h2+p{color:var(--muted);margin-bottom:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:50px;padding:0 22px;border-radius:12px;font-weight:800;font-size:16px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);cursor:pointer;font-family:inherit;text-decoration:none}
+.btn.koyu{background:var(--ink);color:#fff}
+.btnlar{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+/* kart */
+.kart{width:105mm;height:148mm;max-width:100%;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:9mm 8mm;display:flex;flex-direction:column;align-items:center;text-align:center;margin:0 auto}
+.kart .ad{font-weight:800;font-size:17px;letter-spacing:-.01em}
+.kart .ad i{display:inline-block;width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--warm),var(--cool));margin-right:7px;vertical-align:2px}
+.kart .yildiz{color:#F4A417;font-size:24px;letter-spacing:3px;margin:7mm 0 2mm}
+.kart .soru{font-size:23px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.kart .aciklama{font-size:13.5px;color:var(--muted);margin-top:2mm}
+.kart .qr{margin:auto 0 0;padding:3mm;border:1px solid var(--line);border-radius:12px;background:#fff}
+.kart .qr img,.kart .qr canvas{display:block;width:56mm!important;height:56mm!important}
+.kart .ipucu{font-size:12px;font-weight:700;color:var(--muted);margin-top:3mm}
+/* mesaj */
+.mesaj{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;font-size:16px;white-space:pre-wrap;word-break:break-word}
+ol.nasil{padding-left:20px;color:var(--muted)} ol.nasil li{margin:6px 0}
+.link{font-size:14px;color:var(--muted);word-break:break-all;margin-top:10px}
+.baski{display:none}
+@media print{
+  @page{size:A4;margin:0}
+  body{background:#fff}
+  .ekran{display:none}
+  .baski{display:grid;grid-template-columns:105mm 105mm;grid-auto-rows:148.5mm;width:210mm}
+  .baski .kart{border:0;border-radius:0;outline:1px dashed #ccc;outline-offset:-1px;height:148.5mm;margin:0}
+}
+</style>
+</head>
+<body>
+<div class="w ekran">
+  <div class="ust">Yorum kiti</div>
+  <h1>Çelik Oto Kiralama</h1>
+  <p class="alt">Memnun müşterilerinizin Google'da yorum bırakmasını kolaylaştıran iki araç. Yorum sayısı arttıkça Google'da daha üstte, daha güvenilir görünürsünüz.</p>
+
+  <h2>1 · Tezgah kartı</h2>
+  <p>Müşteri telefonunun kamerasını karta tutunca doğrudan yorum ekranı açılır.</p>
+  <div id="onizleme"></div>
+  <div class="btnlar"><button class="btn koyu" onclick="print()">Yazdır (A4'e 4 kart)</button></div>
+
+  <h2>2 · İş bitince atılacak mesaj</h2>
+  <p>Müşteriye WhatsApp'tan gönderin; linke dokununca yorum ekranı açılır.</p>
+  <div class="mesaj" id="mesaj">Merhaba, Çelik Oto Kiralama olarak bizi tercih ettiğiniz için teşekkür ederiz. Memnun kaldıysanız Google&#x27;da kısa bir yorum bırakır mısınız? Çok yardımcı olur: https://search.google.com/local/writereview?placeid=ChIJmY0LwmxbyhQRktNqum8mP3g</div>
+  <div class="btnlar">
+    <button class="btn koyu" id="kopyala">Mesajı kopyala</button>
+    <a class="btn" href="https://wa.me/?text=Merhaba%2C%20%C3%87elik%20Oto%20Kiralama%20olarak%20bizi%20tercih%20etti%C4%9Finiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCr%20ederiz.%20Memnun%20kald%C4%B1ysan%C4%B1z%20Google%27da%20k%C4%B1sa%20bir%20yorum%20b%C4%B1rak%C4%B1r%20m%C4%B1s%C4%B1n%C4%B1z%3F%20%C3%87ok%20yard%C4%B1mc%C4%B1%20olur%3A%20https%3A//search.google.com/local/writereview%3Fplaceid%3DChIJmY0LwmxbyhQRktNqum8mP3g">WhatsApp'ta aç</a>
+  </div>
+
+  <h2>Nasıl kullanılır?</h2>
+  <ol class="nasil">
+    <li>Kartı yazdırıp tezgaha ya da kasanın yanına koyun.</li>
+    <li>Her iş bittiğinde müşteriye mesajı gönderin; en iyi zaman işin bittiği gün.</li>
+    <li>Gelen yorumlara kısa bir teşekkürle cevap verin.</li>
+  </ol>
+  <p class="link">Yorum linki: https://search.google.com/local/writereview?placeid=ChIJmY0LwmxbyhQRktNqum8mP3g</p>
+</div>
+
+<template id="kartTpl">
+  <div class="kart">
+    <div class="ad"><i></i>Çelik Oto Kiralama</div>
+    <div class="yildiz">★★★★★</div>
+    <div class="soru">Memnun kaldınız mı?</div>
+    <div class="aciklama">Google'da kısa bir yorum bırakın, bize çok yardımcı olur.</div>
+    <div class="qr"></div>
+    <div class="ipucu">Telefonunuzun kamerasını QR koda tutun</div>
+  </div>
+</template>
+<div class="baski" id="baski"></div>
+
+<script>
+var LINK = "https://search.google.com/local/writereview?placeid=ChIJmY0LwmxbyhQRktNqum8mP3g";
+function kart(){ var k=document.getElementById('kartTpl').content.cloneNode(true); new QRCode(k.querySelector('.qr'),{text:LINK,width:512,height:512,correctLevel:QRCode.CorrectLevel.M}); return k; }
+document.getElementById('onizleme').appendChild(kart());
+for (var i=0;i<4;i++) document.getElementById('baski').appendChild(kart());
+document.getElementById('kopyala').onclick=function(){ var b=this; navigator.clipboard.writeText(document.getElementById('mesaj').textContent).then(function(){ b.textContent='Kopyalandı ✓'; setTimeout(function(){ b.textContent='Mesajı kopyala'; },1800); }); };
+</script>
+</body>
+</html>
