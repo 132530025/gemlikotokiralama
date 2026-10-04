@@ -77,12 +77,11 @@ const FIRMA = {
   ],
 
     araclar: [
-    { ad: "Renault Clio",      sinif: "Ekonomik", vites: "Manuel",   yakit: "Benzin", kisi: 5, bagaj: 2, yil: 2024, fiyat: 1450, foto: U("1608640725309-08d36703674f") },
-    { ad: "Hyundai i20",       sinif: "Ekonomik", vites: "Otomatik", yakit: "Benzin", kisi: 5, bagaj: 2, yil: 2024, fiyat: 1650, foto: U("1646119253693-0b80f2906791") },
-    { ad: "Toyota Corolla",    sinif: "Orta",     vites: "Otomatik", yakit: "Hibrit", kisi: 5, bagaj: 3, yil: 2025, fiyat: 2150, foto: U("1623869675781-80aa31012a5a") },
-    { ad: "Dacia Duster",      sinif: "SUV",      vites: "Manuel",   yakit: "Dizel",  kisi: 5, bagaj: 3, yil: 2024, fiyat: 2250, foto: U("1728472804219-0b23a40e7ae3") },
-    { ad: "Peugeot 3008",      sinif: "SUV",      vites: "Otomatik", yakit: "Dizel",  kisi: 5, bagaj: 3, yil: 2025, fiyat: 2900, foto: U("1771783203301-e475b0be1abf") },
-    { ad: "Volkswagen Passat", sinif: "Premium",  vites: "Otomatik", yakit: "Dizel",  kisi: 5, bagaj: 4, yil: 2024, fiyat: 3400, foto: U("1741479897627-d98ff167f115") },
+    // 04.10: firmanın verdiği bilgi = model, otomatik vites, günlük 3.500 TL. Yakıt/yıl verilmedi → boş (sitede gizlenir). Görseller temsili.
+    { ad: "Renault Clio",      sinif: "Hatchback", vites: "Otomatik", yakit: "", kisi: 5, bagaj: "", yil: "", fiyat: 3500, foto: U("1608640725309-08d36703674f") },
+    { ad: "Fiat Egea",         sinif: "Sedan",     vites: "Otomatik", yakit: "", kisi: 5, bagaj: "", yil: "", fiyat: 3500, foto: U("1623869675781-80aa31012a5a") },
+    { ad: "Volkswagen Golf",   sinif: "Hatchback", vites: "Otomatik", yakit: "", kisi: 5, bagaj: "", yil: "", fiyat: 3500, foto: U("1646119253693-0b80f2906791") },
+    { ad: "Hyundai Bayon",     sinif: "SUV",       vites: "Otomatik", yakit: "", kisi: 5, bagaj: "", yil: "", fiyat: 3500, foto: U("1728472804219-0b23a40e7ae3") },
   ],
 
     sss: [
@@ -564,10 +563,10 @@ $("#stats").innerHTML = F.istatistik.map(([b, s]) => `<li><b>${b}</b><span>${s}<
 $("#spots").innerHTML = F.noktalar.map(n => `<li>${ic(/havaliman/i.test(n) ? "plane" : "pin")}${n}</li>`).join("");
 $("#cars").innerHTML = F.araclar.map((a, i) => `
   <article class="car rv" data-s="${a.sinif}" data-v="${a.vites}">
-    <div class="car-img"><img src="${a.foto}" alt="${a.ad}" loading="lazy"><span class="pill">${a.sinif}</span><span class="pill r">${a.yil}</span></div>
+    <div class="car-img"><img src="${a.foto}" alt="${a.ad}" loading="lazy"><span class="pill">${a.sinif}</span>${a.yil ? `<span class="pill r">${a.yil}</span>` : ""}</div>
     <div class="car-body">
       <h3>${a.ad} <small>veya benzeri</small></h3>
-      <ul class="specs"><li>${ic("gear")}${a.vites}</li><li>${ic("fuel")}${a.yakit}</li><li>${ic("users")}${a.kisi}</li><li>${ic("bag")}${a.bagaj}</li></ul>
+      <ul class="specs"><li>${ic("gear")}${a.vites}</li>${a.yakit ? `<li>${ic("fuel")}${a.yakit}</li>` : ""}<li>${ic("users")}${a.kisi}</li>${a.bagaj ? `<li>${ic("bag")}${a.bagaj}</li>` : ""}</ul>
       <div class="car-foot"><div class="price"><b>${tl(a.fiyat)}</b><span>/gün</span></div><button class="btn btn-brand" data-i="${i}">Hemen Kirala</button></div>
     </div>
   </article>`).join("");
