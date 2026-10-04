@@ -82,6 +82,9 @@ const FIRMA = {
     { ad: "Fiat Egea",         sinif: "Sedan",     vites: "Otomatik", yakit: "", kisi: 5, bagaj: "", yil: "", fiyat: 3500, foto: U("1623869675781-80aa31012a5a") },
     { ad: "Volkswagen Golf",   sinif: "Hatchback", vites: "Otomatik", yakit: "", kisi: 5, bagaj: "", yil: "", fiyat: 3500, foto: U("1646119253693-0b80f2906791") },
     { ad: "Hyundai Bayon",     sinif: "SUV",       vites: "Otomatik", yakit: "", kisi: 5, bagaj: "", yil: "", fiyat: 3500, foto: U("1728472804219-0b23a40e7ae3") },
+    { ad: "Fiat Egea",         sinif: "Sedan",     vites: "Manuel",   yakit: "", kisi: 5, bagaj: "", yil: "", fiyat: 2500, foto: U("1623869675781-80aa31012a5a") },
+    { ad: "Fiat Fiorino",      sinif: "Ticari",    vites: "Manuel",   yakit: "", kisi: "", bagaj: "", yil: "", fiyat: 2500, foto: "" },
+    { ad: "Fiat Doblo (yeni kasa)", sinif: "Ticari", vites: "Manuel", yakit: "", kisi: "", bagaj: "", yil: "", fiyat: 2500, foto: "" },
   ],
 
     sss: [
@@ -222,6 +225,7 @@ h2{font-size:clamp(1.8rem,2.8vw + .9rem,2.8rem);line-height:1.1;letter-spacing:-
 .car{display:flex;flex-direction:column;background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);transition:transform .3s,box-shadow .3s}
 .car-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:#e9ebf0}
 .car-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.noimg{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink-3);font-weight:700;font-size:.9rem}
 @media(hover:hover){.car:hover{transform:translateY(-4px);box-shadow:0 24px 44px -16px rgb(11 17 32/.28)}.car:hover img{transform:scale(1.05)}}
 .pill{position:absolute;top:12px;left:12px;padding:5px 11px;border-radius:999px;background:rgb(255 255 255/.94);font-size:.75rem;font-weight:800}
 .pill.r{left:auto;right:12px;background:rgb(11 17 32/.72);color:#fff}
@@ -563,10 +567,10 @@ $("#stats").innerHTML = F.istatistik.map(([b, s]) => `<li><b>${b}</b><span>${s}<
 $("#spots").innerHTML = F.noktalar.map(n => `<li>${ic(/havaliman/i.test(n) ? "plane" : "pin")}${n}</li>`).join("");
 $("#cars").innerHTML = F.araclar.map((a, i) => `
   <article class="car rv" data-s="${a.sinif}" data-v="${a.vites}">
-    <div class="car-img"><img src="${a.foto}" alt="${a.ad}" loading="lazy"><span class="pill">${a.sinif}</span>${a.yil ? `<span class="pill r">${a.yil}</span>` : ""}</div>
+    <div class="car-img">${a.foto ? `<img src="${a.foto}" alt="${a.ad}" loading="lazy">` : `<span class="noimg">Fotoğraf yakında</span>`}<span class="pill">${a.sinif}</span>${a.yil ? `<span class="pill r">${a.yil}</span>` : ""}</div>
     <div class="car-body">
       <h3>${a.ad} <small>veya benzeri</small></h3>
-      <ul class="specs"><li>${ic("gear")}${a.vites}</li>${a.yakit ? `<li>${ic("fuel")}${a.yakit}</li>` : ""}<li>${ic("users")}${a.kisi}</li>${a.bagaj ? `<li>${ic("bag")}${a.bagaj}</li>` : ""}</ul>
+      <ul class="specs"><li>${ic("gear")}${a.vites}</li>${a.yakit ? `<li>${ic("fuel")}${a.yakit}</li>` : ""}${a.kisi ? `<li>${ic("users")}${a.kisi}</li>` : ""}${a.bagaj ? `<li>${ic("bag")}${a.bagaj}</li>` : ""}</ul>
       <div class="car-foot"><div class="price"><b>${tl(a.fiyat)}</b><span>/gün</span></div><button class="btn btn-brand" data-i="${i}">Hemen Kirala</button></div>
     </div>
   </article>`).join("");
